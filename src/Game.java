@@ -71,16 +71,17 @@ public class Game {
         JButton startButton = GameUtils.createButton("Start Game", new Dimension(550, 100),
                 new Font("Poppins", Font.BOLD, 30), new Color(0x0FFFFF), Color.BLACK,
                 e -> showUsernameEntry());
-        startPanel.add(startButton, gbcMiddle);
 
         JButton leaderboardButton = GameUtils.createButton("Leaderboard", new Dimension(550, 100),
                 new Font("Poppins", Font.BOLD, 30), new Color(0x0FFFFF), Color.BLACK,
                 e -> showDifficultySelection(true));
-        startPanel.add(leaderboardButton, gbcMiddle);
 
         JButton exitButton = GameUtils.createButton("Exit", new Dimension(550, 100),
                 new Font("Poppins", Font.BOLD, 30), new Color(0x0FFFFF), Color.BLACK,
                 e -> System.exit(0));
+
+        startPanel.add(startButton, gbcMiddle);
+        startPanel.add(leaderboardButton, gbcMiddle);
         startPanel.add(exitButton, gbcMiddle);
 
         GridBagConstraints gbcBottom = GameUtils.createGridBagConstraints();
@@ -328,10 +329,8 @@ public class Game {
             pausePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
             pauseButton = GameUtils.createButton("Pause", new Dimension(100, 30),
-                    new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE, e -> {
-                        showPauseMenu();
-                    });
-
+                    new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE,
+                    e -> showPauseMenu());
             pausePanel.add(pauseButton, new GridBagConstraints());
 
             JPanel infoPanel = GameUtils.createPanel(new GridBagLayout(), false);
@@ -385,9 +384,7 @@ public class Game {
 
             JButton saveMenuButton = GameUtils.createButton("Save Menu", new Dimension(300, 60),
                     new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE,
-                    e -> {
-                        showSaveMenu();
-                    });
+                    e -> showSaveMenu());
 
             JButton returnButton = GameUtils.createButton("Main Menu", new Dimension(300, 60),
                     new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE,
@@ -398,9 +395,7 @@ public class Game {
 
             JButton exitButton = GameUtils.createButton("Exit Game", new Dimension(300, 60),
                     new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE,
-                    e -> {
-                        GameUtils.exitWarning();
-                    });
+                    e -> GameUtils.exitWarning());
 
             GridBagConstraints gbc = GameUtils.createGridBagConstraints();
             gbc.insets = new Insets(5, 10, 5, 10);
@@ -426,27 +421,19 @@ public class Game {
 
             JButton backButton = GameUtils.createButton("Back", new Dimension(300, 60),
                     new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE,
-                    e -> {
-                        showPauseMenu();
-                    });
+                    e -> showPauseMenu());
 
             JButton saveButton = GameUtils.createButton("Save Game", new Dimension(300, 60),
                     new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE,
-                    e -> {
-                        GameUtils.saveGameState(username, score, lives, questionIndex, getDifficulty(), panel, cardLayout);
-                    });
+                    e -> GameUtils.saveGameState(username, score, lives, questionIndex, getDifficulty(), panel, cardLayout));
 
             JButton deleteButton = GameUtils.createButton("Delete Save", new Dimension(300, 60),
                     new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE,
-                    e -> {
-                        GameUtils.deleteGameState(username, getDifficulty());
-                    });
+                    e -> GameUtils.deleteGameState(username, getDifficulty()));
 
             JButton loadButton = GameUtils.createButton("Load Save", new Dimension(300, 60),
                     new Font("Roboto Mono", Font.BOLD, 20), new Color(0x004EA1), Color.WHITE,
-                    e -> {
-                        GameUtils.gameplayLoadGameState(username, getDifficulty(), this);
-                    });
+                    e -> GameUtils.gameplayLoadGameState(username, getDifficulty(), this));
 
             GridBagConstraints gbc = GameUtils.createGridBagConstraints();
             gbc.insets = new Insets(5, 10, 5, 10);
@@ -551,13 +538,16 @@ public class Game {
             JLabel finalScoreLabel = GameUtils.createLabel("Final Score: " + score, 25, Color.WHITE);
 
             JButton restartButton = GameUtils.createButton("Restart Game", new Dimension(550, 100),
-                    new Font("Poppins", Font.BOLD, 25), new Color(0x0FFFFF), Color.BLACK, e -> restartGame());
+                    new Font("Poppins", Font.BOLD, 25), new Color(0x0FFFFF), Color.BLACK,
+                    e -> restartGame());
 
             JButton difficultyButton = GameUtils.createButton("Choose Another Difficulty", new Dimension(550, 100),
-                    new Font("Poppins", Font.BOLD, 25), new Color(0x0FFFFF), Color.BLACK, e -> chooseDifficulty());
+                    new Font("Poppins", Font.BOLD, 25), new Color(0x0FFFFF), Color.BLACK,
+                    e -> chooseDifficulty());
 
             JButton returnButton = GameUtils.createButton("Return to Main Menu", new Dimension(550, 100),
-                    new Font("Poppins", Font.BOLD, 25), new Color(0x0FFFFF), Color.BLACK, e -> returnToMenu());
+                    new Font("Poppins", Font.BOLD, 25), new Color(0x0FFFFF), Color.BLACK,
+                    e -> returnToMenu());
 
             postGamePanel.add(titleLabel, gbc);
             postGamePanel.add(finalScoreLabel, gbc);

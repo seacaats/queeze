@@ -92,8 +92,9 @@ public class GameUtils {
         JPanel topPanel = createPanel(new FlowLayout(FlowLayout.LEFT), false);
         topPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JButton returnButton = createButton("Return", new Dimension(100, 50), new Font("Poppins",
-                Font.BOLD, 20), new Color(0x0FFFFF), Color.BLACK, e -> cardLayout.show(panel, screenName));
+        JButton returnButton = createButton("Return", new Dimension(100, 50),
+                new Font("Poppins", Font.BOLD, 20), new Color(0x0FFFFF), Color.BLACK,
+                e -> cardLayout.show(panel, screenName));
         topPanel.add(returnButton);
 
         return topPanel;
