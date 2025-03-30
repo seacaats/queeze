@@ -620,7 +620,7 @@ public class GameUtils {
                 g2.setColor(getBackground());
             }
 
-            g2.fill(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, 20, 20));
+            g2.fill(new RoundRectangle2D.Double(1, 1, getWidth() - 3, getHeight() - 3, 20, 20));
 
             super.paintComponent(g2);
             g2.dispose();
@@ -632,7 +632,7 @@ public class GameUtils {
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2.setColor(Color.BLACK);
             g2.setStroke(new BasicStroke(2));
-            g2.draw(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, 20, 20));
+            g2.draw(new RoundRectangle2D.Double(1, 1, getWidth() - 3, getHeight() - 3, 20, 20));
             g2.dispose();
         }
     }

@@ -34,8 +34,8 @@ public class Game {
     protected void initializeFrame() {
         frame = new JFrame("Queeze");
         frame.setIconImage(new ImageIcon("Assets/queeze logo.png").getImage());
-        frame.setSize(1280, 960);
-        frame.setMinimumSize(new Dimension(1280, 960));
+        frame.setSize(1280, 820);
+        frame.setMinimumSize(new Dimension(1280, 820));
         frame.setLayout(new BorderLayout());
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +54,9 @@ public class Game {
      * Creates and displays the main menu screen
      */
     protected void showMainMenu() {
-        GameUtils.GradientPanel startPanel = new GameUtils.GradientPanel(new GridBagLayout(), Color.decode("#0A0A"), Color.decode("#8F00FF"));
+        GameUtils.GradientPanel startPanel = new GameUtils.GradientPanel(new BorderLayout(), Color.decode("#0A0A"), Color.decode("#8F00FF"));
+
+        JPanel centerPanel = GameUtils.createPanel(new GridBagLayout(), false);
 
         GridBagConstraints gbcTop = GameUtils.createGridBagConstraints();
         gbcTop.insets = new Insets(10, 10, 30, 10);
@@ -63,7 +65,7 @@ public class Game {
         Image scaledImage = originalIcon.getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         JLabel imageLabel = new JLabel(scaledIcon);
-        startPanel.add(imageLabel, gbcTop);
+        centerPanel.add(imageLabel, gbcTop);
 
         GridBagConstraints gbcMiddle = GameUtils.createGridBagConstraints();
         gbcMiddle.insets = new Insets(10, 10, 30, 10);
@@ -80,15 +82,18 @@ public class Game {
                 new Font("Poppins", Font.BOLD, 30), new Color(0x0FFFFF), Color.BLACK,
                 e -> System.exit(0));
 
-        startPanel.add(startButton, gbcMiddle);
-        startPanel.add(leaderboardButton, gbcMiddle);
-        startPanel.add(exitButton, gbcMiddle);
+        centerPanel.add(startButton, gbcMiddle);
+        centerPanel.add(leaderboardButton, gbcMiddle);
+        centerPanel.add(exitButton, gbcMiddle);
 
-        GridBagConstraints gbcBottom = GameUtils.createGridBagConstraints();
-        gbcBottom.insets = new Insets(10, 10, -70, 10);
+        JPanel bottomPanel = GameUtils.createPanel(new FlowLayout(FlowLayout.CENTER), false);
 
         JLabel creditsLabel = GameUtils.createLabel("© 2025, UP-FBS2-BSIT1-04 (Group 1)", 15, Color.LIGHT_GRAY);
-        startPanel.add(creditsLabel, gbcBottom);
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        bottomPanel.add(creditsLabel);
+
+        startPanel.add(centerPanel, BorderLayout.CENTER);
+        startPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         panel.add(startPanel, "StartScreen");
     }
@@ -162,6 +167,8 @@ public class Game {
     /**
      * Handles game start request for specified difficulty
      * Checks for existing saves before starting
+     *
+     * @param difficulty - The game difficulty chosen
      */
     protected void showGameStart(String difficulty) {
         GameUtils.mainMenuLoadGameState(username, difficulty, this);
@@ -169,6 +176,9 @@ public class Game {
 
     /**
      * Starts game with loaded save state
+     *
+     * @param difficulty - The game difficulty chosen
+     * @param gameState - The collection of parameters from the user's save state
      */
     protected void startWithSaveState(String difficulty, GameUtils.GameState gameState) {
         Base gameMode = this.createGameMode(difficulty, username);
@@ -177,6 +187,8 @@ public class Game {
 
     /**
      * Starts a new game with the initial lives depending on the difficulty
+     *
+     * @param difficulty - The game difficulty chosen
      */
     protected void startNewRound(String difficulty) {
         Base gameMode = this.createGameMode(difficulty, username);
@@ -186,6 +198,11 @@ public class Game {
 
     /**
      * Factory method for creating game mode instances depending on the difficulty
+     *
+     * @param difficulty - The game difficulty choseen
+     * @param username - Player's username
+     *
+     * @return the game mode/difficulty class chosen
      */
     protected Base createGameMode(String difficulty, String username) {
         switch (difficulty) {
@@ -203,6 +220,8 @@ public class Game {
     /**
      * Displays leaderboard for specified difficulty
      * Adds crown symbol (♛) for either the top scorer or those with the highest possible scores (15)
+     *
+     * @param difficulty - The game difficulty chosen
      */
     protected void showLeaderboard(String difficulty) {
         GameUtils.GradientPanel leaderboardPanel = new GameUtils.GradientPanel(new BorderLayout(), Color.decode("#0A0A"), Color.decode("#8F00FF"));
@@ -273,12 +292,14 @@ public class Game {
 
         /**
          * Gets difficulty identifier from game mode classes
+         *
          * @return difficulty
          */
         protected abstract String getDifficulty();
 
         /**
          * Initializes game with player username depending on the difficulty chosen
+         *
          * @param username - Player's username
          */
         public Base(String username) {
@@ -313,7 +334,7 @@ public class Game {
             gbc.insets = new Insets(10, 10, 10, 10);
             questionPanel.add(questionLabel, gbc);
 
-            gbc.insets = new Insets(-100, 40, 0, 40);
+            gbc.insets = new Insets(-70, 50, 0, 50);
             gbc.fill = GridBagConstraints.NONE;
 
             for (int i = 0; i < 4; i++) {

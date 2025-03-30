@@ -12,6 +12,7 @@ public class GameModes {
         /**
          * Initializes easy mode with predefined questions and answers
          * Derived from Information Technology and Computer Science concepts
+         *
          * @param username - Player's username
          */
         public EasyMode(String username) {
@@ -77,6 +78,7 @@ public class GameModes {
         /**
          * Initializes normal mode with predefined questions and answers
          * Derived from Information Technology and Computer Science concepts
+         *
          * @param username - Player's username
          */
         public NormalMode(String username) {
@@ -146,6 +148,7 @@ public class GameModes {
             /**
              * Initializes hard mode with predefined questions and answers
              * Derived from Information Technology and Computer Science concepts
+             *
              * @param username - Player's username
              */
             super(username);
