@@ -59,10 +59,10 @@ public class Game {
         JPanel centerPanel = GameUtils.createPanel(new GridBagLayout(), false);
 
         GridBagConstraints gbcTop = GameUtils.createGridBagConstraints();
-        gbcTop.insets = new Insets(10, 10, 30, 10);
+        gbcTop.insets = new Insets(20, 10, 20, 10);
 
         ImageIcon originalIcon = new ImageIcon("Assets//queeze logo.png");
-        Image scaledImage = originalIcon.getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH);
+        Image scaledImage = originalIcon.getImage().getScaledInstance(300, 200, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         JLabel imageLabel = new JLabel(scaledIcon);
         centerPanel.add(imageLabel, gbcTop);
@@ -88,7 +88,7 @@ public class Game {
 
         JPanel bottomPanel = GameUtils.createPanel(new FlowLayout(FlowLayout.CENTER), false);
 
-        JLabel creditsLabel = GameUtils.createLabel("© 2025, UP-FBS2-BSIT1-04 (Group 1)", 15, Color.LIGHT_GRAY);
+        JLabel creditsLabel = GameUtils.createLabel("© 2025, Hev IT", 15, Color.LIGHT_GRAY);
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         bottomPanel.add(creditsLabel);
 
